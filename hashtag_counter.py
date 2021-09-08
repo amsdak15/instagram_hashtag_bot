@@ -5,8 +5,8 @@ import pandas as pd
 from fake_useragent import UserAgent
 import random
 
-foo = ["instashtagger@gmail.com","instaxhash@gmail.com",'jammersmith1@gmail.com'];
-username=random.choices(foo)
+username_list = ["instashtagger@gmail.com","instaxhash@gmail.com",'jammersmith1@gmail.com'];
+username=random.choices(username_list)
 password="zaq.12345"
 
 opt = Options()
@@ -18,31 +18,36 @@ opt.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chr
 driver = webdriver.Chrome(options=opt)
 
 def login() :
+    # Goto login page
     driver.get("https://www.instagram.com/accounts/login/")
     driver.implicitly_wait(10)
+    # Enter username
     user=driver.find_element_by_name("username")
     user.send_keys(username)
+    # Enter password
     passwd=driver.find_element_by_name("password")
     passwd.send_keys(password)
     time.sleep(1)
+    # Click login
     login_button_ = driver.find_element_by_xpath("//*[@id='loginForm']/div/div[3]/button/div")
     login_button_.click()
     time.sleep(3)
     driver.save_screenshot("./login.png")
 
 def logout():
-    # Goto profile
     try:
+        # Click profile icon
         driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]').click()
         time.sleep(3)
-        # Click settings
+        # Click logout
         driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/div[2]/div[2]/div[2]/div[2]/div').click()
         time.sleep(3)
         driver.save_screenshot("./logout.png")
     except:
+        # Click profile icon
         driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[6]').click()
         time.sleep(3)
-        # Click settings
+        # Click logout
         driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/div[2]/div[2]/div[2]/div[2]/div').click()
         time.sleep(3)
         driver.save_screenshot("./logout.png")
