@@ -5,9 +5,9 @@ import pandas as pd
 from fake_useragent import UserAgent
 import random
 
-username_list = ["instashtagger@gmail.com","instaxhash@gmail.com",'jammersmith1@gmail.com'];
+username_list = ["@gmail.com'];
 username=random.choices(username_list)
-password="zaq.12345"
+password=""
 
 opt = Options()
 ua = UserAgent()
